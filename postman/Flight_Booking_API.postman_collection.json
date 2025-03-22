@@ -1,0 +1,705 @@
+{
+  "info": {
+    "_postman_id": "f8b23e5a-4c12-4e5b-8f9d-9e1b2c3d4e5f",
+    "name": "Flight Booking API",
+    "description": "API collection for testing the Flight Booking System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Public",
+      "item": [
+        {
+          "name": "Get Airport Locations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/flights/locations",
+              "host": ["{{baseUrl}}"],
+              "path": ["flights", "locations"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/flights/locations",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["flights", "locations"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"code\": \"DEL\",\n    \"name\": \"Indira Gandhi International Airport\",\n    \"city\": \"Delhi\",\n    \"country\": \"India\"\n  },\n  {\n    \"code\": \"BOM\",\n    \"name\": \"Chhatrapati Shivaji Maharaj International Airport\",\n    \"city\": \"Mumbai\",\n    \"country\": \"India\"\n  },\n  {\n    \"code\": \"BLR\",\n    \"name\": \"Kempegowda International Airport\",\n    \"city\": \"Bangalore\",\n    \"country\": \"India\"\n  },\n  {\n    \"code\": \"MAA\",\n    \"name\": \"Chennai International Airport\",\n    \"city\": \"Chennai\",\n    \"country\": \"India\"\n  },\n  {\n    \"code\": \"CCU\",\n    \"name\": \"Netaji Subhas Chandra Bose International Airport\",\n    \"city\": \"Kolkata\",\n    \"country\": \"India\"\n  },\n  {\n    \"code\": \"HYD\",\n    \"name\": \"Rajiv Gandhi International Airport\",\n    \"city\": \"Hyderabad\",\n    \"country\": \"India\"\n  },\n  {\n    \"code\": \"COK\",\n    \"name\": \"Cochin International Airport\",\n    \"city\": \"Kochi\",\n    \"country\": \"India\"\n  },\n  {\n    \"code\": \"GOI\",\n    \"name\": \"Dabolim Airport\",\n    \"city\": \"Goa\",\n    \"country\": \"India\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Search Flights (One-way)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/flights/search",
+              "host": ["{{baseUrl}}"],
+              "path": ["flights", "search"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": \"DEL\",\n  \"destination\": \"BOM\",\n  \"departureDate\": \"2025-04-01\",\n  \"cabinClass\": \"Economy\",\n  \"tripType\": \"ONE_WAY\",\n  \"passengers\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flights/search",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["flights", "search"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"origin\": \"DEL\",\n  \"destination\": \"BOM\",\n  \"departureDate\": \"2025-04-01\",\n  \"cabinClass\": \"Economy\",\n  \"tripType\": \"ONE_WAY\",\n  \"passengers\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"outbound\": [\n    {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"flightNumber\": \"AI101\",\n      \"origin\": {\n        \"code\": \"DEL\",\n        \"name\": \"Indira Gandhi International Airport\",\n        \"city\": \"Delhi\",\n        \"country\": \"India\"\n      },\n      \"destination\": {\n        \"code\": \"BOM\",\n        \"name\": \"Chhatrapati Shivaji Maharaj International Airport\",\n        \"city\": \"Mumbai\",\n        \"country\": \"India\"\n      },\n      \"departureTime\": \"2025-04-01T06:00:00+05:30\",\n      \"arrivalTime\": \"2025-04-01T08:15:00+05:30\",\n      \"duration\": 135,\n      \"cabinClass\": \"Economy\",\n      \"cabinClassId\": \"223e4567-e89b-12d3-a456-426614174001\",\n      \"price\": 4999.00,\n      \"availableSeats\": 150,\n      \"aircraft\": \"Airbus A320\"\n    }\n  ],\n  \"return\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "Search Flights (Round-trip)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/flights/search",
+              "host": ["{{baseUrl}}"],
+              "path": ["flights", "search"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"origin\": \"DEL\",\n  \"destination\": \"BLR\",\n  \"departureDate\": \"2025-04-01\",\n  \"returnDate\": \"2025-04-02\",\n  \"cabinClass\": \"Economy\",\n  \"tripType\": \"ROUND_TRIP\",\n  \"passengers\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/flights/search",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["flights", "search"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"origin\": \"DEL\",\n  \"destination\": \"BLR\",\n  \"departureDate\": \"2025-04-01\",\n  \"returnDate\": \"2025-04-02\",\n  \"cabinClass\": \"Economy\",\n  \"tripType\": \"ROUND_TRIP\",\n  \"passengers\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"outbound\": [\n    {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174003\",\n      \"flightNumber\": \"AI201\",\n      \"origin\": {\n        \"code\": \"DEL\",\n        \"name\": \"Indira Gandhi International Airport\",\n        \"city\": \"Delhi\",\n        \"country\": \"India\"\n      },\n      \"destination\": {\n        \"code\": \"BLR\",\n        \"name\": \"Kempegowda International Airport\",\n        \"city\": \"Bangalore\",\n        \"country\": \"India\"\n      },\n      \"departureTime\": \"2025-04-01T07:20:00+05:30\",\n      \"arrivalTime\": \"2025-04-01T10:00:00+05:30\",\n      \"duration\": 160,\n      \"cabinClass\": \"Economy\",\n      \"cabinClassId\": \"223e4567-e89b-12d3-a456-426614174004\",\n      \"price\": 6599.00,\n      \"availableSeats\": 150,\n      \"aircraft\": \"Boeing 737\"\n    }\n  ],\n  \"return\": [\n    {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174004\",\n      \"flightNumber\": \"AI202\",\n      \"origin\": {\n        \"code\": \"BLR\",\n        \"name\": \"Kempegowda International Airport\",\n        \"city\": \"Bangalore\",\n        \"country\": \"India\"\n      },\n      \"destination\": {\n        \"code\": \"DEL\",\n        \"name\": \"Indira Gandhi International Airport\",\n        \"city\": \"Delhi\",\n        \"country\": \"India\"\n      },\n      \"departureTime\": \"2025-04-02T11:30:00+05:30\",\n      \"arrivalTime\": \"2025-04-02T14:10:00+05:30\",\n      \"duration\": 160,\n      \"cabinClass\": \"Economy\",\n      \"cabinClassId\": \"223e4567-e89b-12d3-a456-426614174005\",\n      \"price\": 6599.00,\n      \"availableSeats\": 150,\n      \"aircraft\": \"Boeing 737\"\n    }\n  ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get Flight Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/flights/detail/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["flights", "detail", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "f1b6c3a2-d4e5-4f7a-8b9c-d0e1f2a3b4c5"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/flights/detail/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["flights", "detail", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "f1b6c3a2-d4e5-4f7a-8b9c-d0e1f2a3b4c5"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"f1b6c3a2-d4e5-4f7a-8b9c-d0e1f2a3b4c5\",\n  \"flightNumber\": \"AI101\",\n  \"origin\": {\n    \"id\": \"a1b2c3d4-e5f6-4a5b-8c9d-e0f1a2b3c4d5\",\n    \"code\": \"DEL\",\n    \"name\": \"Indira Gandhi International Airport\",\n    \"city\": \"Delhi\",\n    \"country\": \"India\"\n  },\n  \"destination\": {\n    \"id\": \"b2c3d4e5-f6a7-5b6c-9d0e-f1a2b3c4d5e6\",\n    \"code\": \"BOM\",\n    \"name\": \"Chhatrapati Shivaji Maharaj International Airport\",\n    \"city\": \"Mumbai\",\n    \"country\": \"India\"\n  },\n  \"departureTime\": \"2025-04-01T06:00:00+05:30\",\n  \"arrivalTime\": \"2025-04-01T08:15:00+05:30\",\n  \"duration\": 135,\n  \"aircraft\": \"Airbus A320\",\n  \"cabinClasses\": [\n    {\n      \"id\": \"c3d4e5f6-a7b8-6c7d-0e1f-a2b3c4d5e6f7\",\n      \"cabinClass\": \"Economy\",\n      \"totalSeats\": 150,\n      \"availableSeats\": 150,\n      \"price\": 4999.00\n    },\n    {\n      \"id\": \"d4e5f6a7-b8c9-7d8e-1f2a-3b4c5d6e7f8a\",\n      \"cabinClass\": \"Premium Economy\",\n      \"totalSeats\": 50,\n      \"availableSeats\": 50,\n      \"price\": 8999.00\n    },\n    {\n      \"id\": \"e5f6a7b8-c9d0-8e9f-2a3b-4c5d6e7f8a9b\",\n      \"cabinClass\": \"Business\",\n      \"totalSeats\": 30,\n      \"availableSeats\": 30,\n      \"price\": 14999.00\n    },\n    {\n      \"id\": \"f6a7b8c9-d0e1-9f0a-3b4c-5d6e7f8a9b0c\",\n      \"cabinClass\": \"First\",\n      \"totalSeats\": 10,\n      \"availableSeats\": 10,\n      \"price\": 34999.00\n    }\n  ]\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/signup",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signup"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/signup",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "signup"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"auth0|12345\",\n  \"email\": \"user@example.com\",\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sign In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/signin",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signin"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/signin",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "signin"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"email\": \"user@example.com\",\n    \"password\": \"password123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"auth0|12345\",\n  \"email\": \"user@example.com\",\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Sign Out",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/signout",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "signout"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/signout",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "signout"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Successfully signed out\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get User Profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "profile"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/auth/profile",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["auth", "profile"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": \"auth0|12345\",\n  \"email\": \"user@example.com\"\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Protected",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"passengers\": [\n    {\n      \"gender\": \"Mr\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"birthDay\": \"2\",\n      \"birthMonth\": \"January\",\n      \"birthYear\": \"1990\",\n      \"passportNumber\": \"A1234567\",\n      \"passportCountry\": \"United Kingdom\",\n      \"passportExpiryDay\": \"3\",\n      \"passportExpiryMonth\": \"January\",\n      \"passportExpiryYear\": \"2030\"\n    }\n  ],\n  \"contactEmail\": \"john.doe@example.com\",\n  \"contactPhone\": \"+44123456789\",\n  \"flights\": {\n    \"outbound\": {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"flightNumber\": \"AA100\",\n      \"origin\": \"JFK\",\n      \"destination\": \"LAX\",\n      \"departureTime\": \"2025-04-01T08:00:00Z\",\n      \"arrivalTime\": \"2025-04-01T11:30:00Z\",\n      \"duration\": \"3h 30m\",\n      \"price\": 299.99\n    },\n    \"return\": null\n  },\n  \"totalPrice\": 299.99,\n  \"bookingDate\": \"{{$isoTimestamp}}\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings"]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"passengers\": [\n    {\n      \"gender\": \"Mr\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"birthDay\": \"2\",\n      \"birthMonth\": \"January\",\n      \"birthYear\": \"1990\",\n      \"passportNumber\": \"A1234567\",\n      \"passportCountry\": \"United Kingdom\",\n      \"passportExpiryDay\": \"3\",\n      \"passportExpiryMonth\": \"January\",\n      \"passportExpiryYear\": \"2030\"\n    }\n  ],\n  \"contactEmail\": \"john.doe@example.com\",\n  \"contactPhone\": \"+44123456789\",\n  \"flights\": {\n    \"outbound\": {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"flightNumber\": \"AA100\",\n      \"origin\": \"JFK\",\n      \"destination\": \"LAX\",\n      \"departureTime\": \"2025-04-01T08:00:00Z\",\n      \"arrivalTime\": \"2025-04-01T11:30:00Z\",\n      \"duration\": \"3h 30m\",\n      \"price\": 299.99\n    },\n    \"return\": null\n  },\n  \"totalPrice\": 299.99,\n  \"bookingDate\": \"{{$isoTimestamp}}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b1c2d3e4-f5g6-7h8i-9j0k-l1m2n3o4p5q6\",\n  \"userId\": \"auth0|12345\",\n  \"status\": \"CONFIRMED\",\n  \"totalPrice\": 299.99,\n  \"bookingDate\": \"2025-03-22T05:30:00.000Z\",\n  \"flights\": {\n    \"outbound\": {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"flightNumber\": \"AA100\",\n      \"origin\": \"JFK\",\n      \"destination\": \"LAX\",\n      \"departureTime\": \"2025-04-01T08:00:00Z\",\n      \"arrivalTime\": \"2025-04-01T11:30:00Z\",\n      \"duration\": \"3h 30m\",\n      \"cabinClass\": \"ECONOMY\"\n    },\n    \"return\": null\n  },\n  \"passengers\": [\n    {\n      \"gender\": \"Mr\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"birthDay\": \"2\",\n      \"birthMonth\": \"January\",\n      \"birthYear\": \"1990\"\n    }\n  ],\n  \"contactEmail\": \"john.doe@example.com\",\n  \"contactPhone\": \"+44123456789\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Get User's Bookings",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings"]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings"]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"b1c2d3e4-f5g6-7h8i-9j0k-l1m2n3o4p5q6\",\n    \"userId\": \"auth0|12345\",\n    \"status\": \"CONFIRMED\",\n    \"totalPrice\": 299.99,\n    \"bookingDate\": \"2025-03-22T05:30:00.000Z\",\n    \"flights\": {\n      \"outbound\": {\n        \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n        \"flightNumber\": \"AA100\",\n        \"origin\": \"JFK\",\n        \"destination\": \"LAX\",\n        \"departureTime\": \"2025-04-01T08:00:00Z\",\n        \"arrivalTime\": \"2025-04-01T11:30:00Z\",\n        \"duration\": \"3h 30m\",\n        \"cabinClass\": \"ECONOMY\"\n      },\n      \"return\": null\n    },\n    \"passengers\": [\n      {\n        \"gender\": \"Mr\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"birthDay\": \"2\",\n        \"birthMonth\": \"January\",\n        \"birthYear\": \"1990\"\n      }\n    ],\n    \"contactEmail\": \"john.doe@example.com\",\n    \"contactPhone\": \"+44123456789\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get Booking Details",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookings/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "{{booking_id}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b1c2d3e4-f5g6-7h8i-9j0k-l1m2n3o4p5q6\",\n  \"userId\": \"auth0|12345\",\n  \"status\": \"CONFIRMED\",\n  \"totalPrice\": 299.99,\n  \"bookingDate\": \"2025-03-22T05:30:00.000Z\",\n  \"flights\": {\n    \"outbound\": {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"flightNumber\": \"AA100\",\n      \"origin\": \"JFK\",\n      \"destination\": \"LAX\",\n      \"departureTime\": \"2025-04-01T08:00:00Z\",\n      \"arrivalTime\": \"2025-04-01T11:30:00Z\",\n      \"duration\": \"3h 30m\",\n      \"cabinClass\": \"ECONOMY\"\n    },\n    \"return\": null\n  },\n  \"passengers\": [\n    {\n      \"gender\": \"Mr\",\n      \"firstName\": \"John\",\n      \"lastName\": \"Doe\",\n      \"birthDay\": \"2\",\n      \"birthMonth\": \"January\",\n      \"birthYear\": \"1990\",\n      \"passportNumber\": \"A1234567\",\n      \"passportCountry\": \"United Kingdom\",\n      \"passportExpiryDay\": \"3\",\n      \"passportExpiryMonth\": \"January\",\n      \"passportExpiryYear\": \"2030\"\n    }\n  ],\n  \"contactEmail\": \"john.doe@example.com\",\n  \"contactPhone\": \"+44123456789\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Cancel Booking",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{jwt_token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookings/:id/cancel",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookings", ":id", "cancel"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{booking_id}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "Success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/bookings/:id/cancel",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["bookings", ":id", "cancel"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "{{booking_id}}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b1c2d3e4-f5g6-7h8i-9j0k-l1m2n3o4p5q6\",\n  \"userId\": \"auth0|12345\",\n  \"status\": \"CANCELLED\",\n  \"totalPrice\": 299.99,\n  \"bookingDate\": \"2025-03-22T05:30:00.000Z\",\n  \"flights\": {\n    \"outbound\": {\n      \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n      \"flightNumber\": \"AA100\",\n      \"origin\": \"JFK\",\n      \"destination\": \"LAX\",\n      \"departureTime\": \"2025-04-01T08:00:00Z\",\n      \"arrivalTime\": \"2025-04-01T11:30:00Z\",\n      \"duration\": \"3h 30m\",\n      \"cabinClass\": \"ECONOMY\"\n    },\n    \"return\": null\n  }\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
